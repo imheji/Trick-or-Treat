@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+
+	<title>Trick or Treat!</title>
+
+	<meta charset="utf-8">
+
+	<style type="text/css">
+
+		@font-face {
+		    font-family: 'BinggraeSamanco-Bold';
+		    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10@1.0/BinggraeSamanco-Bold.woff') format('woff');
+		    font-weight: normal;
+		    font-style: normal;
+		}
+
+
+		body {overflow: hidden; margin: 0; background-color: black; font-family: 
+			'BinggraeSamanco-Bold';}
+
+		div {margin: 0;}
+
+		section{ margin: auto;
+		text-align: center;}
+
+
+		#poetText {color: white;  font-size: 30px;}
+
+		.slider{ 
+
+		-webkit-appearance : none;
+		display: none;
+		background-color: black;
+		outline: none;
+
+		-webkit-transition : 0.2s;
+		transition: opacity 0.2s;
+		border-radius: 30px;
+
+		 }
+
+
+		.music { width: 70px; left: 10%; padding: 15px; }
+	
+		
+		.candy{position: absolute; left: 0; top: 0; z-index: -3;}
+
+		.script{text-align: center; color: white;}
+
+
+		.blue {}
+
+		.red { height: 60px; text-align: left;}
+
+		.white { height: 100px;}
+		.sec1 { height: 110px;}
+
+		.sec1 img {position: absolute; top: 0; left: 0; width: 100%; top: 0%;}
+
+		.sec2 { width: : 500px; margin: 0; 
+				background-image: url("door.png"); background-size: cover;
+				background-repeat: no-repeat;}
+
+
+
+
+
+		.center{width: 600px; height: 680px; 
+			position: absolute;top: 50%; left: 50%; margin:-300px 0 0 -300px}
+
+
+	
+
+		.ghost { height: 520px;}
+		.text { height: 80px; margin-top: 30px; width: 300px; padding-top: 12px;
+				left: 25%; 
+				background-image: url("text.png"); background-size: contain;
+				background-repeat: no-repeat; position: absolute; }
+
+		.btn {
+
+			font-size: 20px;
+			padding: 10px 20px;
+			background-color: black;
+			border:3px solid #fe6023;
+			border-radius: 30px;
+			text-transform: uppercase;
+			letter-spacing: 4px;
+			color: #fe6023;
+			margin-bottom: 30px;
+			font-family: 'BinggraeSamanco-Bold';
+
+
+
+		}
+
+		.btn:hover {transform: scale(1.1); cursor: pointer;}
+
+
+		.ch {height: 100px; }
+		.ch2 {height: 310px; width: 200px;  margin: auto;
+		      position: relative;}
+
+
+		#image {
+			width: 100%; height: 100%; object-fit: contain; position: absolute;
+			top: 50%; left: 50%; transform: translate(-50%, -50%);
+
+		}
+
+
+
+			.move {animation: motion 1s cubic-bezier(.39,0,.62,1) infinite alternate; margin-top: 0;
+				}
+			        
+				@keyframes motion {
+				0% {margin-top: 0px;}
+				100% {margin-top: 40px;}
+			}
+
+
+
+
+	</style>
+</head>
+<body>
+
+	<section class="red">
+		<img id="musicBut" src="music.png" class="music">
+		<audio id="musicSnd" src= "music.mp3"></audio>
+	</section>
+
+
+	<section class="blue center">
+
+		<div class="sec1">
+			<img src="title.png" class="whtie">
+
+		</div>
+
+		<div>
+
+			<a href="ch4.html" target="_self"><button id="targetBut"onclick="imgToggle()"  class="btn">give candy</button></a>
+
+		</div>
+
+
+
+
+		<section class="sec2">
+
+
+
+
+		
+
+				<div id="poetText" class="text"> </div>
+
+			
+
+				<div class="ghost">
+					
+					<div class="ch">  </div>
+					<div class="ch2"> <img id="image" name="targeimg" src="ch3.png" image_onclick()   class="move"> </div>
+
+
+				</div>
+
+
+		</section>
+		
+
+	</section>
+
+
+
+
+
+
+<script type="text/javascript">
+
+
+
+
+
+
+
+
+	var a = ["c1","c2","c3","c4"];
+
+	for(var i=0; i<20; i++){
+
+		var t = document.createElement("img");
+		t.src = a[randomBH(0,3)] + ".png";
+		t.className = "candy";
+		t.style.width = randomBH(50,100) + "px";
+		t.style.height = "auto";
+		t.style.left = Math.random()* screen.availWidth + "px";
+		t.style.top = Math.random()* screen.availHeight + "px";
+		document.body.appendChild(t);
+
+		}
+
+
+		function randomBH(min, max) {
+
+			min = Math.ceil(min);
+			max = Math.floor(max);
+			return Math.floor(Math.random() * (max - min + 1))+ min;
+
+
+		}
+
+
+
+
+
+
+</script>
+
+
+<script type="text/javascript">
+
+
+
+
+	var poet = "사탕 죠!<br> 빨리!!<br> 많이 죠!!!<br> 언제 죠!!!!<br> 맛있는 거 죠!!!!!<br> 언제까지 기다료!!!!!!<br> 안 죠?!!!!!!!<br>";
+
+	var poetArr = poet.split("<br>");
+
+	
+
+	var myTimer = setInterval(print,1600);
+
+	var s=0;
+
+	function print(){
+
+		if (s == 7) {
+		 poetText.innerHTML = null;
+		 poetText.innerHTML += poetArr[s] + "<br>";
+		 s=0;
+		}
+
+		else {
+
+		 poetText.innerHTML = null;
+		 poetText.innerHTML += poetArr[s] + "<br>";
+		 s++;
+
+		 if(s == poetArr.length){clearInterval(myTimer);}
+		}
+
+
+
+
+
+	
+
+
+	}
+
+	function randomA(min,max){
+		min = Math.ceil(min);
+		max = Math.floor(max);
+		return Math.floor(Math.random() * (max - min + 1) + min)
+	}
+	
+
+</script>
+
+
+<input id="vol" type="range" max="100" min="0" value="0" id="myRange" class="slider">
+
+
+	
+	
+
+<script type="text/javascript">
+
+
+	vol.value = 70;
+
+	vol.oninput = function(){
+			musicSnd.volume = vol.value / 100;
+	
+			
+		}
+
+
+	
+
+
+	var state = false;
+
+
+
+	
+	musicBut.onclick = function(){
+	
+			if(!state){
+
+			musicSnd.play();
+			musicBut.src = "music.png";
+			state = true;}
+
+			else {
+			musicSnd.pause();
+			musicBut.src = "music.png";
+			state = false;
+			}
+
+		}
+
+
+</script>
+
+
+
+
+
+ 
+
+
+</body>
+</html>
